@@ -1,5 +1,6 @@
-paint = false
-lines = []
+paint = false;
+lines = [];
+model = null;
 async function runProg(){
     m = document.getElementById('model');
     w = document.getElementById('weight');
@@ -12,8 +13,15 @@ async function runProg(){
     p = p.as4D(1, 28, 28, 1);
     console.log(p.shape);
     // p = p.as2D(1, 28*28);
-
-    model = await  tf.loadModel(tf.io.browserFiles([m.files[0], w.files[0]]));
+    if (!model){
+        if(m.files[0] && w.files[0]){
+            model = await  tf.loadModel(tf.io.browserFiles([m.files[0], w.files[0]]));
+        }else{
+            model = await tf.loadModel('https://raw.githubusercontent.com/BenHals/MNIST-JS/master/exp/model.json');
+        }
+        
+    }
+    
     model.predict(p).print();
     document.getElementById('output').innerHTML = model.predict(p).argMax(axis=1).get(0).toString();
 }
