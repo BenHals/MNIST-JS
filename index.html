@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.13.3/dist/tf.min.js"> </script>
+        <script src="mnist.js"> </script>
+    </head>
+    <body>
+        <input type = "file" id = "model">
+        <input type = "file" id = "weight">
+        <button onclick="runProg()">Go</button>
+        <button onclick="clearCanv()">clear</button>
+        <canvas width="280", height = "280" id="inputCanvas"></canvas>
+        <canvas width="28", height = "28" id="readCanvas"></canvas>
+        <div id="output"></div>
+    </body>
+</html>
